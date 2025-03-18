@@ -1,36 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import './Loader.css';
-import Home from './Home';
-const Loader = () => {
-  const [loading, setLoading] = useState(true);
+import React, { useEffect } from 'react';
 
+const Loader = ({ onLoaded }) => {
   useEffect(() => {
+    console.log('Loader is running...');
     const timer = setTimeout(() => {
-      setLoading(false);
-    }, 3000); // Simulate a 3-second loading time
+      onLoaded(); // Stop the loader after 2 seconds
+    }, 2000); // 2-second timer
 
-    return () => clearTimeout(timer); // Cleanup timer on unmount
-  }, []);
+    return () => {
+      console.log('Cleanup loader timer...');
+      clearTimeout(timer); // Clean up timer when component unmounts
+    };
+  }, [onLoaded]);
 
   return (
-    <>
-      {loading ? (
-        <div id="preloader">
-          <div className="bar-container">
-            <div className="bar"></div>
-            <div className="bar"></div>
-            <div className="bar"></div>
-            <div className="bar"></div>
-            <div className="bar"></div>
-          </div>
-          <h1>Coming soon...</h1>
-        </div>
-      ) : (
-        <div id="content">
-          <Home/>
-        </div>
-      )}
-    </>
+    <div className="loader flex items-center justify-center h-screen w-screen bg-black text-white">
+      <h2 className="text-3xl font-bold">Loading...</h2>
+    </div>
   );
 };
 
