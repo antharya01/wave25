@@ -2,15 +2,11 @@ import React, { useEffect } from 'react';
 
 const Loader = ({ onLoaded }) => {
   useEffect(() => {
-    console.log('Loader is running...');
     const timer = setTimeout(() => {
-      onLoaded(); // Stop the loader after 2 seconds
-    }, 2000); // 2-second timer
+      onLoaded(); // Loader finishes
+    }, 2000); // 2 seconds
 
-    return () => {
-      console.log('Cleanup loader timer...');
-      clearTimeout(timer); // Clean up timer when component unmounts
-    };
+    return () => clearTimeout(timer); // Cleanup timer
   }, [onLoaded]);
 
   return (
