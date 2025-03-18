@@ -98,4 +98,4 @@ const Spons = () => {
  <div className='spons'><h1>our previous year spons</h1> </div>);
 }
 
-export default Spons;
+export default  Spons;
