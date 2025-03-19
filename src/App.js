@@ -6,7 +6,7 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   const handleLoaded = () => {
-    setLoading(false);
+    setLoading(false); // Stops loading
   };
 
   return (
